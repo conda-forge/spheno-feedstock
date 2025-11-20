@@ -15,7 +15,7 @@ source:
     - dynamic-library-makefile.patch
 
 build:
-  number: 0
+  number: 1
   skip: win
   script:
     - cd src
