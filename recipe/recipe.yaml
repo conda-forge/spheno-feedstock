@@ -6,7 +6,7 @@ context:
 
 package:
   name: ${{ name }}
-  version: ${{ version | replace(".", "") }}
+  version: ${{ version }}
 
 source:
   url: https://spheno.hepforge.org/downloads/?f=SPheno-${{ version }}.tar.gz
