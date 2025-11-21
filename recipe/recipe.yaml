@@ -13,9 +13,12 @@ source:
   sha256: d66bdcaff35c9a6887e5b0498d9fdec89e9230cb4aea0093f48e03a12dfe52da
   patches:
     - dynamic-library-makefile.patch
+    - errcan-6-error-to-default-output.patch
+    - save-to-different-output-files.patch
+    - 200-char-filenames.patch
 
 build:
-  number: 0
+  number: 1
   skip: win
   script:
     - cd src
