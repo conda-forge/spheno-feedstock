@@ -5,7 +5,7 @@
 
 [workspace]
 name = "spheno-feedstock"
-version = "3.53.1"  # conda-smithy version used to generate this file
+version = "3.53.3"  # conda-smithy version used to generate this file
 description = "Pixi configuration for conda-forge/spheno-feedstock"
 authors = ["@conda-forge/spheno"]
 channels = ["conda-forge"]
@@ -23,30 +23,54 @@ description = "List contents of all packages found in rattler-build build direct
 [tasks.build]
 cmd = "rattler-build build --recipe recipe"
 description = "Build spheno-feedstock directly (without setup scripts), no particular variant specified"
-[tasks."build-linux_64_"]
-cmd = "rattler-build build --recipe recipe -m .ci_support/linux_64_.yaml"
-description = "Build spheno-feedstock with variant linux_64_ directly (without setup scripts)"
-[tasks."inspect-linux_64_"]
-cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_64_.yaml"
-description = "List contents of spheno-feedstock packages built for variant linux_64_"
-[tasks."build-linux_aarch64_"]
-cmd = "rattler-build build --recipe recipe -m .ci_support/linux_aarch64_.yaml"
-description = "Build spheno-feedstock with variant linux_aarch64_ directly (without setup scripts)"
-[tasks."inspect-linux_aarch64_"]
-cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_aarch64_.yaml"
-description = "List contents of spheno-feedstock packages built for variant linux_aarch64_"
-[tasks."build-osx_64_"]
-cmd = "rattler-build build --recipe recipe -m .ci_support/osx_64_.yaml"
-description = "Build spheno-feedstock with variant osx_64_ directly (without setup scripts)"
-[tasks."inspect-osx_64_"]
-cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/osx_64_.yaml"
-description = "List contents of spheno-feedstock packages built for variant osx_64_"
-[tasks."build-osx_arm64_"]
-cmd = "rattler-build build --recipe recipe -m .ci_support/osx_arm64_.yaml"
-description = "Build spheno-feedstock with variant osx_arm64_ directly (without setup scripts)"
-[tasks."inspect-osx_arm64_"]
-cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/osx_arm64_.yaml"
-description = "List contents of spheno-feedstock packages built for variant osx_arm64_"
+[tasks."build-linux_64_organisationatlas"]
+cmd = "rattler-build build --recipe recipe -m .ci_support/linux_64_organisationatlas.yaml"
+description = "Build spheno-feedstock with variant linux_64_organisationatlas directly (without setup scripts)"
+[tasks."inspect-linux_64_organisationatlas"]
+cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_64_organisationatlas.yaml"
+description = "List contents of spheno-feedstock packages built for variant linux_64_organisationatlas"
+[tasks."build-linux_64_organisationnone"]
+cmd = "rattler-build build --recipe recipe -m .ci_support/linux_64_organisationnone.yaml"
+description = "Build spheno-feedstock with variant linux_64_organisationnone directly (without setup scripts)"
+[tasks."inspect-linux_64_organisationnone"]
+cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_64_organisationnone.yaml"
+description = "List contents of spheno-feedstock packages built for variant linux_64_organisationnone"
+[tasks."build-linux_aarch64_organisationatlas"]
+cmd = "rattler-build build --recipe recipe -m .ci_support/linux_aarch64_organisationatlas.yaml"
+description = "Build spheno-feedstock with variant linux_aarch64_organisationatlas directly (without setup scripts)"
+[tasks."inspect-linux_aarch64_organisationatlas"]
+cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_aarch64_organisationatlas.yaml"
+description = "List contents of spheno-feedstock packages built for variant linux_aarch64_organisationatlas"
+[tasks."build-linux_aarch64_organisationnone"]
+cmd = "rattler-build build --recipe recipe -m .ci_support/linux_aarch64_organisationnone.yaml"
+description = "Build spheno-feedstock with variant linux_aarch64_organisationnone directly (without setup scripts)"
+[tasks."inspect-linux_aarch64_organisationnone"]
+cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_aarch64_organisationnone.yaml"
+description = "List contents of spheno-feedstock packages built for variant linux_aarch64_organisationnone"
+[tasks."build-osx_64_organisationatlas"]
+cmd = "rattler-build build --recipe recipe -m .ci_support/osx_64_organisationatlas.yaml"
+description = "Build spheno-feedstock with variant osx_64_organisationatlas directly (without setup scripts)"
+[tasks."inspect-osx_64_organisationatlas"]
+cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/osx_64_organisationatlas.yaml"
+description = "List contents of spheno-feedstock packages built for variant osx_64_organisationatlas"
+[tasks."build-osx_64_organisationnone"]
+cmd = "rattler-build build --recipe recipe -m .ci_support/osx_64_organisationnone.yaml"
+description = "Build spheno-feedstock with variant osx_64_organisationnone directly (without setup scripts)"
+[tasks."inspect-osx_64_organisationnone"]
+cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/osx_64_organisationnone.yaml"
+description = "List contents of spheno-feedstock packages built for variant osx_64_organisationnone"
+[tasks."build-osx_arm64_organisationatlas"]
+cmd = "rattler-build build --recipe recipe -m .ci_support/osx_arm64_organisationatlas.yaml"
+description = "Build spheno-feedstock with variant osx_arm64_organisationatlas directly (without setup scripts)"
+[tasks."inspect-osx_arm64_organisationatlas"]
+cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/osx_arm64_organisationatlas.yaml"
+description = "List contents of spheno-feedstock packages built for variant osx_arm64_organisationatlas"
+[tasks."build-osx_arm64_organisationnone"]
+cmd = "rattler-build build --recipe recipe -m .ci_support/osx_arm64_organisationnone.yaml"
+description = "Build spheno-feedstock with variant osx_arm64_organisationnone directly (without setup scripts)"
+[tasks."inspect-osx_arm64_organisationnone"]
+cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/osx_arm64_organisationnone.yaml"
+description = "List contents of spheno-feedstock packages built for variant osx_arm64_organisationnone"
 
 [feature.smithy.dependencies]
 conda-smithy = "*"
