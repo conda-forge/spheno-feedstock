@@ -13,9 +13,16 @@ source:
   sha256: d66bdcaff35c9a6887e5b0498d9fdec89e9230cb4aea0093f48e03a12dfe52da
   patches:
     - dynamic-library-makefile.patch
+    - 200-char-filenames.patch
+    # organisation is variants.yaml key
+    - if: organisation == "atlas"
+      then:
+        - errcan-6-error-to-default-output.patch
+        - save-to-different-output-files.patch
 
 build:
-  number: 0
+  number: 1
+  string: ${{ organisation }}_h${{ PKG_HASH }}_${{ PKG_BUILDNUM }}
   skip: win
   script:
     - cd src
@@ -77,17 +84,31 @@ tests:
         - SPheno
       files:
         - etc/conda/test-files/spheno/0/input/LesHouches.in.GMSB
-        - etc/conda/test-files/spheno/0/output/SPheno.spc.GMSB
+        - if: organisation == "atlas"
+          then:
+            - etc/conda/test-files/spheno/0/tests/output/SPheno-atlas.spc.GMSB
+          else:
+            - etc/conda/test-files/spheno/0/output/SPheno.spc.GMSB
 
   - files:
       source:
         - input/LesHouches.in.GMSB
-        - output/SPheno.spc.GMSB
+        - if: organisation != "atlas"
+          then:
+            - output/SPheno.spc.GMSB
+      recipe:
+        - if: organisation == "atlas"
+          then:
+            - tests/output/SPheno-atlas.spc.GMSB
     script:
       - SPheno input/LesHouches.in.GMSB
       # Should be minimal differences
       # Use || true to avoid diff returning non-zero exit code
-      - diff SPheno.spc output/SPheno.spc.GMSB || true
+      - if: organisation == "atlas"
+        then:
+          - diff SPheno.spc tests/output/SPheno-atlas.spc.GMSB || true
+        else:
+          - diff SPheno.spc output/SPheno.spc.GMSB || true
 
 about:
   summary: "SPheno: a program for calculating supersymmetric spectra, SUSY particle decays and SUSY particle production at e+e- colliders"
@@ -119,5 +140,6 @@ about:
   repository: https://spheno.hepforge.org/
 
 extra:
+  feedstock-name: spheno
   recipe-maintainers:
     - matthewfeickert
