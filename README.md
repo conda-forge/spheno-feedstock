@@ -120,6 +120,7 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-spheno-green.svg)](https://anaconda.org/conda-forge/spheno) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/spheno.svg)](https://anaconda.org/conda-forge/spheno) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/spheno.svg)](https://anaconda.org/conda-forge/spheno) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/spheno.svg)](https://anaconda.org/conda-forge/spheno) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-spheno--atlas-green.svg)](https://anaconda.org/conda-forge/spheno-atlas) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/spheno-atlas.svg)](https://anaconda.org/conda-forge/spheno-atlas) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/spheno-atlas.svg)](https://anaconda.org/conda-forge/spheno-atlas) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/spheno-atlas.svg)](https://anaconda.org/conda-forge/spheno-atlas) |
 
 Installing spheno
 =================
@@ -131,16 +132,16 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `spheno` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `spheno, spheno-atlas` can be installed with `conda`:
 
 ```
-conda install spheno
+conda install spheno spheno-atlas
 ```
 
 or with `mamba`:
 
 ```
-mamba install spheno
+mamba install spheno spheno-atlas
 ```
 
 It is possible to list all of the versions of `spheno` available on your platform with `conda`:

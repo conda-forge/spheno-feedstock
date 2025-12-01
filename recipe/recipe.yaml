@@ -3,10 +3,12 @@ schema_version: 1
 context:
   name: spheno
   version: "4.0.6"
-  build_number: 1
+  build_number: 2
 
-package:
-  name: ${{ name }}
+recipe:
+  # Have top level name be unique from any outputs
+  # c.f. https://github.com/conda-forge/conda-forge.github.io/blob/abfc33db28c35e9a8f6b719d0021768f0d5d06be/docs/maintainer/knowledge_base.md?plain=1#L1749
+  name: ${{ name }}-suite
   version: ${{ version }}
 
 source:
@@ -22,97 +24,127 @@ source:
         - save-to-different-output-files.patch
 
 build:
-  number: ${{ build_number }}
-  string: ${{ organisation }}_h${{ hash }}_${{ build_number }}
-  variant:
-    # prefer 'none' over other variants
-    down_prioritize_variant: ${{ 0 if organisation == "none" else 1 }}
   skip: win
-  script:
-    - cd src
-    - make version=${{ version }}
-    - make --jobs 1
-    # Install
-    - cd ..
-    - mkdir -p $PREFIX/bin $PREFIX/lib $PREFIX/include/spheno
-    - mv bin/* $PREFIX/bin/
-    - mv lib/* $PREFIX/lib/
-    - mv include/* $PREFIX/include/spheno/
+  number: ${{ build_number }}
 
-requirements:
-  build:
-    - ${{ stdlib('c') }}
-    - ${{ compiler('fortran') }}
-    - make
+outputs:
+  - package:
+      name: ${{ name }}
 
-tests:
-  - package_contents:
-      strict: true
-      include:
-        - spheno/branchingratios.mod
-        - spheno/chargino3decays.mod
-        - spheno/control.mod
-        - spheno/couplings.mod
-        - spheno/decayfunctions.mod
-        - spheno/epluseminusproduction.mod
-        - spheno/experiment.mod
-        - spheno/gluino3decays.mod
-        - spheno/inputoutput.mod
-        - spheno/lhc_observables.mod
-        - spheno/loopcouplings.mod
-        - spheno/loopfunctions.mod
-        - spheno/loopmasses.mod
-        - spheno/lowenergy.mod
-        - spheno/mathematics.mod
-        - spheno/mathematicsqp.mod
-        - spheno/model_data.mod
-        - spheno/mssm_data.mod
-        - spheno/neut3decays.mod
-        - spheno/nmssm_data.mod
-        - spheno/nmssm_tools.mod
-        - spheno/rges.mod
-        - spheno/rp_data.mod
-        - spheno/rptools.mod
-        - spheno/slepton3bodydecays.mod
-        - spheno/standardmodel.mod
-        - spheno/stop3bodydecays.mod
-        - spheno/sugraruns.mod
-        - spheno/susydecays.mod
-        - spheno/susymasses.mod
-        - spheno/threebodyphasespace.mod
-        - spheno/threebodyphasespaces.mod
-        - spheno/twoloophiggsmass.mod
-      lib:
-        - libSPheno
-      bin:
-        - SPheno
-      files:
-        - etc/conda/test-files/spheno/0/input/LesHouches.in.GMSB
-        - if: organisation == "atlas"
-          then:
-            - etc/conda/test-files/spheno/0/tests/output/SPheno-atlas.spc.GMSB
-          else:
-            - etc/conda/test-files/spheno/0/output/SPheno.spc.GMSB
+    build:
+      string: ${{ organisation }}_h${{ hash }}_${{ build_number }}
+      variant:
+        # prefer 'none' over other variants
+        down_prioritize_variant: ${{ 0 if organisation == "none" else 1 }}
+      script:
+        - cd src
+        - make version=${{ version }}
+        - make --jobs 1
+        # Install
+        - cd ..
+        - mkdir -p $PREFIX/bin $PREFIX/lib $PREFIX/include/spheno
+        - mv bin/* $PREFIX/bin/
+        - mv lib/* $PREFIX/lib/
+        - mv include/* $PREFIX/include/spheno/
 
-  - files:
-      source:
-        - input/LesHouches.in.GMSB
-        - if: organisation != "atlas"
-          then:
-            - output/SPheno.spc.GMSB
-      recipe:
-        - if: organisation == "atlas"
-          then:
-            - tests/output/SPheno-atlas.spc.GMSB
-    script:
-      - SPheno input/LesHouches.in.GMSB
-      # Should be minimal differences
-      # Use || true to avoid diff returning non-zero exit code
-      - if: organisation == "atlas"
-        then:
-          - diff SPheno.spc tests/output/SPheno-atlas.spc.GMSB || true
-        else:
-          - diff SPheno.spc output/SPheno.spc.GMSB || true
+    requirements:
+      build:
+        - ${{ stdlib('c') }}
+        - ${{ compiler('fortran') }}
+        - make
+
+    tests:
+      - package_contents:
+          strict: true
+          include:
+            - spheno/branchingratios.mod
+            - spheno/chargino3decays.mod
+            - spheno/control.mod
+            - spheno/couplings.mod
+            - spheno/decayfunctions.mod
+            - spheno/epluseminusproduction.mod
+            - spheno/experiment.mod
+            - spheno/gluino3decays.mod
+            - spheno/inputoutput.mod
+            - spheno/lhc_observables.mod
+            - spheno/loopcouplings.mod
+            - spheno/loopfunctions.mod
+            - spheno/loopmasses.mod
+            - spheno/lowenergy.mod
+            - spheno/mathematics.mod
+            - spheno/mathematicsqp.mod
+            - spheno/model_data.mod
+            - spheno/mssm_data.mod
+            - spheno/neut3decays.mod
+            - spheno/nmssm_data.mod
+            - spheno/nmssm_tools.mod
+            - spheno/rges.mod
+            - spheno/rp_data.mod
+            - spheno/rptools.mod
+            - spheno/slepton3bodydecays.mod
+            - spheno/standardmodel.mod
+            - spheno/stop3bodydecays.mod
+            - spheno/sugraruns.mod
+            - spheno/susydecays.mod
+            - spheno/susymasses.mod
+            - spheno/threebodyphasespace.mod
+            - spheno/threebodyphasespaces.mod
+            - spheno/twoloophiggsmass.mod
+          lib:
+            - libSPheno
+          bin:
+            - SPheno
+          files:
+            - etc/conda/test-files/spheno/0/input/LesHouches.in.GMSB
+            - if: organisation == "atlas"
+              then:
+                - etc/conda/test-files/spheno/0/tests/output/SPheno-atlas.spc.GMSB
+              else:
+                - etc/conda/test-files/spheno/0/output/SPheno.spc.GMSB
+
+      - files:
+          source:
+            - input/LesHouches.in.GMSB
+            - if: organisation != "atlas"
+              then:
+                - output/SPheno.spc.GMSB
+          recipe:
+            - if: organisation == "atlas"
+              then:
+                - tests/output/SPheno-atlas.spc.GMSB
+        script:
+          - SPheno input/LesHouches.in.GMSB
+          # Should be minimal differences
+          # Use || true to avoid diff returning non-zero exit code
+          - if: organisation == "atlas"
+            then:
+              - diff SPheno.spc tests/output/SPheno-atlas.spc.GMSB || true
+            else:
+              - diff SPheno.spc output/SPheno.spc.GMSB || true
+
+  - package:
+      name: ${{ name }}-atlas
+
+    build:
+      skip:
+        - win
+        - organisation != "atlas"
+
+    requirements:
+      run:
+        - spheno ==${{ version }} [build=atlas*]
+
+    tests:
+      - package_contents:
+          strict: true
+
+      - script:
+          # Verify spheno package exists as expected and SPheno runs
+          # Need to copy input file locally as file path is too many characters
+          # for SPheno otherwise.
+          - cp $PREFIX/etc/conda/test-files/spheno/0/input/LesHouches.in.GMSB .
+          - SPheno ./LesHouches.in.GMSB
+          - test -f ./SPheno.spc
 
 about:
   summary: "SPheno: a program for calculating supersymmetric spectra, SUSY particle decays and SUSY particle production at e+e- colliders"
