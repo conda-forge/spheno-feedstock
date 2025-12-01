@@ -3,6 +3,7 @@ schema_version: 1
 context:
   name: spheno
   version: "4.0.6"
+  build_number: 1
 
 package:
   name: ${{ name }}
@@ -21,8 +22,11 @@ source:
         - save-to-different-output-files.patch
 
 build:
-  number: 1
-  string: ${{ organisation }}_h${{ PKG_HASH }}_${{ PKG_BUILDNUM }}
+  number: ${{ build_number }}
+  string: ${{ organisation }}_h${{ hash }}_${{ build_number }}
+  variant:
+    # prefer 'none' over other variants
+    down_prioritize_variant: ${{ 0 if organisation == "none" else 1 }}
   skip: win
   script:
     - cd src
