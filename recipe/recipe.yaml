@@ -2,8 +2,8 @@ schema_version: 1
 
 context:
   name: spheno
-  version: "4.0.6"
-  build_number: 2
+  version: "4.0.7"
+  build_number: 0
 
 recipe:
   # Have top level name be unique from any outputs
@@ -13,7 +13,7 @@ recipe:
 
 source:
   url: https://spheno.hepforge.org/downloads/?f=SPheno-${{ version }}.tar.gz
-  sha256: d66bdcaff35c9a6887e5b0498d9fdec89e9230cb4aea0093f48e03a12dfe52da
+  sha256: 4118cba09efff861c43f3fd4951395f9cc8b96cc8819476c97943d95d5167937
   patches:
     - dynamic-library-makefile.patch
     - 200-char-filenames.patch
