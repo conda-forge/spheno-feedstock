@@ -5,21 +5,29 @@
 jobs:
 - job: osx
   pool:
-    vmImage: macOS-15
+    vmImage: $(VMIMAGE)
   strategy:
     matrix:
       osx_64_organisationatlas:
         CONFIG: osx_64_organisationatlas
         UPLOAD_PACKAGES: 'True'
+        VMIMAGE: macOS-15
+        store_build_artifacts: false
       osx_64_organisationnone:
         CONFIG: osx_64_organisationnone
         UPLOAD_PACKAGES: 'True'
+        VMIMAGE: macOS-15
+        store_build_artifacts: false
       osx_arm64_organisationatlas:
         CONFIG: osx_arm64_organisationatlas
         UPLOAD_PACKAGES: 'True'
+        VMIMAGE: macOS-15-arm64
+        store_build_artifacts: false
       osx_arm64_organisationnone:
         CONFIG: osx_arm64_organisationnone
         UPLOAD_PACKAGES: 'True'
+        VMIMAGE: macOS-15-arm64
+        store_build_artifacts: false
   timeoutInMinutes: 360
   variables: {}
 
