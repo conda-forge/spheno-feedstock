@@ -1,14 +1,13 @@
 schema_version: 1
 
 context:
-  name: spheno
   version: "4.0.7"
   build_number: 0
 
 recipe:
   # Have top level name be unique from any outputs
   # c.f. https://github.com/conda-forge/conda-forge.github.io/blob/abfc33db28c35e9a8f6b719d0021768f0d5d06be/docs/maintainer/knowledge_base.md?plain=1#L1749
-  name: ${{ name }}-suite
+  name: spheno-suite
   version: ${{ version }}
 
 source:
@@ -29,7 +28,7 @@ build:
 
 outputs:
   - package:
-      name: ${{ name }}
+      name: spheno
 
     build:
       string: ${{ organisation }}_h${{ hash }}_${{ build_number }}
@@ -123,7 +122,7 @@ outputs:
               - diff SPheno.spc output/SPheno.spc.GMSB || true
 
   - package:
-      name: ${{ name }}-atlas
+      name: spheno-atlas
 
     build:
       skip:
