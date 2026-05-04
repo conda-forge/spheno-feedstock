@@ -1,19 +1,18 @@
 schema_version: 1
 
 context:
-  name: spheno
-  version: "4.0.6"
-  build_number: 2
+  version: "4.0.7"
+  build_number: 0
 
 recipe:
   # Have top level name be unique from any outputs
   # c.f. https://github.com/conda-forge/conda-forge.github.io/blob/abfc33db28c35e9a8f6b719d0021768f0d5d06be/docs/maintainer/knowledge_base.md?plain=1#L1749
-  name: ${{ name }}-suite
+  name: spheno-suite
   version: ${{ version }}
 
 source:
   url: https://spheno.hepforge.org/downloads/?f=SPheno-${{ version }}.tar.gz
-  sha256: d66bdcaff35c9a6887e5b0498d9fdec89e9230cb4aea0093f48e03a12dfe52da
+  sha256: 4118cba09efff861c43f3fd4951395f9cc8b96cc8819476c97943d95d5167937
   patches:
     - dynamic-library-makefile.patch
     - 200-char-filenames.patch
@@ -29,7 +28,7 @@ build:
 
 outputs:
   - package:
-      name: ${{ name }}
+      name: spheno
 
     build:
       string: ${{ organisation }}_h${{ hash }}_${{ build_number }}
@@ -123,7 +122,7 @@ outputs:
               - diff SPheno.spc output/SPheno.spc.GMSB || true
 
   - package:
-      name: ${{ name }}-atlas
+      name: spheno-atlas
 
     build:
       skip:
