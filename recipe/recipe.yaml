@@ -1,7 +1,7 @@
 schema_version: 1
 
 context:
-  version: "4.0.7"
+  version: "4.0.8"
   build_number: 0
 
 recipe:
@@ -12,7 +12,7 @@ recipe:
 
 source:
   url: https://spheno.hepforge.org/downloads/?f=SPheno-${{ version }}.tar.gz
-  sha256: 4118cba09efff861c43f3fd4951395f9cc8b96cc8819476c97943d95d5167937
+  sha256: aa23ebde480862b4e8b1c8c7ce581206c995ff8c3f48508ac2bd4971b32edddb
   patches:
     - dynamic-library-makefile.patch
     - 200-char-filenames.patch
