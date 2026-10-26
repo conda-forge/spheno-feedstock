@@ -51,6 +51,8 @@ outputs:
         - ${{ stdlib('c') }}
         - ${{ compiler('fortran') }}
         - make
+      run_exports:
+        - ${{ pin_subpackage('spheno', upper_bound='x.x') }}
 
     tests:
       - package_contents:
