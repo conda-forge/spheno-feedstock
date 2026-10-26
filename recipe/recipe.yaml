@@ -63,6 +63,7 @@ outputs:
             - spheno/decayfunctions.mod
             - spheno/epluseminusproduction.mod
             - spheno/experiment.mod
+            - spheno/fh_data.mod
             - spheno/gluino3decays.mod
             - spheno/inputoutput.mod
             - spheno/lhc_observables.mod
